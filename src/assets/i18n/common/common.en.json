@@ -1,0 +1,21 @@
+{
+    "Common": {
+        "Yes": "Yes",
+        "No": "No",
+        "Error": "Error while communicating with server",
+        "RequestCompleted": "Request completed"
+    },
+    "Action": {
+        "close": "Close",
+        "back": "Back"
+    },
+    "General": {
+        "Search": "Search",
+        "SearchFilterDescriptionTitle": "Search",
+        "SearchFilterDescription": "Please specify criteria and press enter or click on search button",
+        "SearchNoResultTitle": "No search results",
+        "SearchNoResultDescription": "There are no search results by entered criteria",
+        "Edit": "Edit",
+        "Delete": "Delete"
+    }
+}

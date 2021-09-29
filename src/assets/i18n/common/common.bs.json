@@ -1,0 +1,21 @@
+{
+    "Common": {
+        "Yes": "Da",
+        "No": "Ne",
+        "Error": "Greška prilikom komunikacije sa serverom",
+        "RequestCompleted": "Zahtjev izvršen"
+    },
+    "Action": {
+        "close": "Zatvori",
+        "back": "Nazad"
+    },
+    "General": {
+        "Search": "Pretraga",
+        "Edit": "Uredi",
+        "Delete": "Obriši",
+        "SearchNoResultTitle": "Nema rezultata pretrage",
+        "SearchNoResultDescription" : "Nema rezultata pretrage po unesenim parametrima",
+        "SearchFilterDescriptionTitle" : "Rezultati pretrage",
+        "SearchFilterDescription": "Ovdje će biti prikazani rezulatati pretrage."
+    }
+}

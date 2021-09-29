@@ -1,0 +1,54 @@
+
+//note: change this import for another theme
+@import "standard-template/theme";
+
+.container {
+   max-width: 100% !important;
+}
+
+.text-center {
+   button {
+      margin: 5px;
+   }
+}
+
+.inline-block {
+   display: inline-block;
+}
+
+.container-list {
+   outline: none;
+}
+
+button {
+   outline: none !important;
+}
+
+.search-filter-description-info-panel {
+   min-height: 150px;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+   
+}
+
+.green{
+   color: #0097A7;
+   text-transform: uppercase;
+}
+
+.red{
+   color: red;
+   text-transform: uppercase;
+}
+
+.aligned-with-icon {
+   position: absolute;
+   margin-top: 5px;
+   margin-left: 5px;
+}
+
+ .star-icon{
+ color: gold !important;
+}
+

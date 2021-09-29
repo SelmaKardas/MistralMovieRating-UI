@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+}
+
+  .mat-column-coverImagePath {
+    width: 25% !important;
+  }
+
+  .mat-column-title {
+    width: 30% !important;
+  }
+
+  img {
+    width:100px !important;
+    height:150px !important;
+    padding: 10px !important;
+    border-radius:10% !important;
+  }
+
+  .aligned-with-icon{
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px; /* optional */
+}
+
+  .star-icon{
+  color: gold !important;
+}
+
+.mat-form-field
+{
+  display: inline;
+}

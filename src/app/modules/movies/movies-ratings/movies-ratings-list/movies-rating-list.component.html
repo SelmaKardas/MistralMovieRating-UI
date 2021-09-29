@@ -1,0 +1,103 @@
+<div>
+    <mat-card>
+        <mat-card-content>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <div>
+                        <mat-form-field class="full-wid">
+                            <input appAutofocus matInput [(ngModel)]="searchObject.fts" type="text" [placeholder]="'Movies.fts' | translate"
+                                (keyup)='filterResults()' />
+                            </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+     
+    <mat-card *ngIf="isFilterDescriptionShown">
+        <ms-spinner [isLoading]="isLoading"></ms-spinner>
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon role="img" aria-hidden="true">find_in_page</mat-icon>
+            </div>
+            <mat-card-title>{{'General.SearchFilterDescriptionTitle' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="search-filter-description-info-panel">
+                {{'General.SearchFilterDescription' | translate}}
+            </p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card [hidden]="isLoading || isFilterDescriptionShown || (searchResult?.resultList?.length > 0 || (searchResult?.resultList?.length == 0 && searchObject?.page > 0 ))">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon role="img" aria-hidden="true">cloud_off</mat-icon>
+            </div>
+            <mat-card-title>{{'General.SearchNoResultTitle' | translate}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{'General.SearchNoResultDescription' | translate}}
+            </p>
+        </mat-card-content>
+    </mat-card>
+ <mat-card [hidden]="isFilterDescriptionShown || (searchResult?.resultList?.length === 0 && searchObject?.page === 0)">
+        <mat-card-content>
+            <ms-spinner [isLoading]="isLoading"></ms-spinner>
+            <div class="row">
+                <div class="col col-sm-12">
+                    <table mat-table matSort [dataSource]="searchResult?.resultList">
+                        
+                            <ng-container matColumnDef="coverImagePath">
+                                <th mat-header-cell *matHeaderCellDef> {{'Movies.picture' | translate }} </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div *ngIf="element.coverImagePath === undefined ; then noPhotoBlock else photoBlock"></div>
+                                    <ng-template #noPhotoBlock>
+                                            <img src= "assets/img/no-image-icon.png">          
+                                    </ng-template>
+                
+                                    <ng-template #photoBlock>
+                                            <img [src]="getImageFullPath(element.coverImagePath)">
+                                    </ng-template>
+                                
+                                </td>  
+                            </ng-container>
+            
+                            <ng-container matColumnDef="title">
+                                <th mat-header-cell *matHeaderCellDef> {{'Movies.title' | translate }} </th>
+                                <td mat-cell *matCellDef="let element" appCellLocalizer="{{'Movies.title' | translate }}"> {{element.title }} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="category">
+                                <th mat-header-cell *matHeaderCellDef> {{'Movies.category' | translate }} </th>
+                                <td mat-cell *matCellDef="let element" appCellLocalizer="{{'Movies.category' | translate }}"> {{ (element.category == movieCategory ? 'Movie': 'TVShow') | translate }} </td>
+                            </ng-container>
+                        
+                            <ng-container matColumnDef="averageRating">
+                                <th mat-header-cell *matHeaderCellDef> {{'Movies.averageRating' | translate }} </th>
+                                <td mat-cell *matCellDef="let element"><mat-icon class="star-icon">star</mat-icon><span class="aligned-with-icon">{{element.averageRating }}</span> </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="myRating">
+                                <th mat-header-cell *matHeaderCellDef> {{'Movies.myRating' | translate }} </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div *ngxPermissionsOnly="Permissions.Rating.Create"> 
+                                      <app-rating [rating]='element.userRating?.rating' [itemId]='element.id' (ratingClick)='ratingComponentClick($event, element.id, element.userRating?.id)'></app-rating>
+                                    </div>
+                                </td>
+                            </ng-container>
+                        
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [length]="searchResult?.count" [pageIndex]="searchObject?.page"
+                        [pageSize]="searchObject?.pageSize" [pageSizeOptions]="[5, 10, 25, 100]">
+                    </mat-paginator>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+

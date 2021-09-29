@@ -1,0 +1,21 @@
+{  
+    "App": "common",
+    "Movies": {
+        "fts": "Search movie or tv show",
+        "picture": "Cover image",
+        "title": "Title",
+        "description": "Description",
+        "actors": "Actors ",
+        "averageRating": "Average rating",
+        "myRating": "My rating",
+        "releaseDate": "Release date ",
+        "movies": "Movies",
+        "tvShows": "TV Shows",
+        "category": "Category "
+
+    },
+    "MoviesList": "List of movies and TV shows",
+    "TopRatedMovies": "10 top rated movies or TV shows",
+    "MyMoviesList": "My movies list"
+    
+}

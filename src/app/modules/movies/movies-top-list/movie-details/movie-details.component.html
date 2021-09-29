@@ -1,0 +1,47 @@
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ model.title }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="portfolio-row" fxLayout="row" fxLayout.lt-sm="column" fxLayoutWrap="nowrap" fxLayoutGap="10px" fxLayoutGap.sm="8px">
+                <div fxFlex="33.33">
+                    <div *ngIf="model.coverImagePath === undefined ; then noPhotoBlock else photoBlock"></div>
+                    <ng-template #noPhotoBlock>
+                        <mat-card class="example-card">
+                            <img mat-card-image src= "assets/img/no-image-icon.png">
+                        </mat-card>
+                    </ng-template>
+
+                    <ng-template #photoBlock>
+                        <mat-card class="example-card">
+                            <img mat-card-image img [src]="getImageFullPath(model.coverImagePath)">
+                        </mat-card>
+                    </ng-template>
+                </div>
+
+                <div fxFlex="66.66">
+                    <br>
+                    <p><strong>{{'Movies.category' | translate }}</strong></p>
+                    <p>{{ (model.category == movieCategory ? 'Movie': 'TVShow') | translate }}</p>
+                    <p><strong>{{'Movies.description' | translate }}</strong></p>
+                    <p>{{model.description}}</p>
+                    <p><strong>{{'Movies.actors' | translate }}</strong></p>
+                    <p>{{model.fullActors}}</p>
+                    <p><strong>{{'Movies.releaseDate' | translate }}</strong></p>
+                    <p>{{model.releaseDate | date: 'dd/MM/yyyy'}}</p>
+                    <p><strong>{{'Movies.averageRating' | translate }}</strong></p>
+                    <p><mat-icon class="star-icon">star</mat-icon><span class="aligned-with-icon">{{model.averageRating }}</span></p>
+                </div>
+              </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button (click)="goBack()" mat-button>
+                <mat-icon role="img" aria-hidden="true">arrow_backward</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+

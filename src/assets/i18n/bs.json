@@ -1,0 +1,20 @@
+{
+    "App": "common",
+    "Movies": {
+        "fts": "Pretražite film ili seriju",
+        "picture": "Naslovna slika",
+        "title": "Naslov",
+        "description": "Opis",
+        "actors": "Glumci ",
+        "averageRating": "Prosječna ocjena",
+        "myRating": "Moja ocjena",
+        "releaseDate": "Datum objavljivanja ",
+        "movies": "Filmovi",
+        "tvShows": "Serije",
+        "category": "Kategorija "
+
+    },
+    "MoviesList": "Lista filomova i serija",
+    "TopRatedMovies": "10 najboljih filmova ili serija",
+    "MyMoviesList": "Lista mojih filmova"
+}

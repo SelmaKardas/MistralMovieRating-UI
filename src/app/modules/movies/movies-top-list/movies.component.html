@@ -1,0 +1,61 @@
+<div>
+  <div class="row">
+      <div class="col col-sm-6">
+          <mat-form-field class="full-wid">
+            <input appAutofocus matInput [(ngModel)]="searchObject.fts" type="text" [placeholder]="'Movies.fts' | translate"
+                (keyup)='filterResults()' />
+         </mat-form-field>
+
+          <mat-button-toggle-group [(ngModel)]="searchObject.category" (change)="categoryChanged()" aria-label="Font Style">
+            <mat-button-toggle [value]="movieCategory">{{'Movies.movies' | translate }}</mat-button-toggle>
+            <mat-button-toggle [value]="tvShowCategory">{{'Movies.tvShows' | translate }}</mat-button-toggle>
+          </mat-button-toggle-group>
+
+      </div>
+  </div>
+    
+  <div class="row">
+    <ms-spinner [isLoading]="isLoading"></ms-spinner>
+    <div [hidden]=" (searchResult?.resultList?.length === 0 && searchObject?.page === 0)" 
+        *ngFor="let item of searchResult?.resultList" 
+         class="col col-lg-2 col-md-6 col-sm-12">
+            <mat-card class= "example-card" (click)="details(item)">
+                    <mat-card-header>
+                        <mat-card-title> {{item.title }}</mat-card-title>
+                    </mat-card-header>
+                    <div *ngIf="item.coverImagePath === undefined ; then noPhotoBlock else photoBlock"></div>
+                    <ng-template #noPhotoBlock>
+                            <img src= "assets/img/no-image-icon.png">          
+                    </ng-template>
+
+                    <ng-template #photoBlock>
+                            <img [src]="getImageFullPath(item.coverImagePath)">
+                    </ng-template>
+
+                    <mat-card-content>
+                        <p><strong>{{'Movies.category' | translate }}</strong>{{ (item.category == movieCategory ? 'Movie': 'TVShow') | translate }}</p>
+                        <p><strong>{{'Movies.actors' | translate }}</strong>{{item.fullActors }}</p>
+                        <p><strong>{{'Movies.releaseDate' | translate }}</strong>{{item.releaseDate | date: 'dd/MM/yyyy' }}</p>
+                    </mat-card-content>
+
+                    <mat-card-footer>
+                      <p><mat-icon class="star-icon">star</mat-icon><span class="aligned-with-icon">{{item.averageRating }}</span></p>
+                    </mat-card-footer>
+
+            </mat-card>
+    </div>
+  </div>
+      
+      
+  <div class="row">
+    <div class="col-sm-12 text-center">
+        <button mat-mini-fab color="primary" aria-label="Search" (click)="searchMore()">
+          <mat-icon role="img" aria-hidden="true">more_horiz</mat-icon>
+        </button>
+    </div>
+  </div>
+</div>
+      
+  
+  
+  
