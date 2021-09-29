@@ -31,7 +31,7 @@ export class MoviesRatingListComponent implements OnInit, AfterViewInit {
 
     Permissions: any = Permissions;
 
-      constructor(private mainService: MoviesService) { }
+    constructor(private mainService: MoviesService) { }
 
     async ngOnInit() {
         Object.assign(this.searchObjectClone, this.searchObject);
@@ -82,21 +82,21 @@ export class MoviesRatingListComponent implements OnInit, AfterViewInit {
         });
     }
 
-      async clear() {
-          this.searchObject = {};
-          Object.assign(this.searchObject, this.searchObjectClone);
-          await this.search(true);
-      }
+    async clear() {
+        this.searchObject = {};
+        Object.assign(this.searchObject, this.searchObjectClone);
+        await this.search(true);
+    }
 
-  private getImageFullPath = (imagePath: string) => {
-  return `${Constants.api}${imagePath}`;
-  }
+    private getImageFullPath = (imagePath: string) => {
+    return `${Constants.api}${imagePath}`;
+    }
 
     async filterResults(){
     if (this.searchObject.fts.length > 1 || this.searchObject.fts.length == 0) {
         await this.search(true);
+        }   
     }
-}
 
     async ratingComponentClick(clickObj: any, movieId: number, ratingId: number): Promise<any> {
         let ratingObject = {
